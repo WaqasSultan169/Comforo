@@ -5,9 +5,14 @@ import { useNavigate } from 'react-router-dom';
 export default function CheckoutPage() {
   const navigate = useNavigate();
   const [selected, setSelected] = useState('');
+  const [activeBilling, setActiveBilling] = useState('');
 
   const handleSelect = (key) => {
-    setSelected(prev => (prev === key ? '' : key)); // toggle on second click
+    setSelected(prev => (prev === key ? '' : key));
+  };
+
+  const toggleBillingOption = (option) => {
+    setActiveBilling(prev => (prev === option ? '' : option));
   };
 
   const paymentOptions = [
@@ -15,15 +20,21 @@ export default function CheckoutPage() {
       key: 'safepay',
       label: 'Safepay Checkout - pay with debit & credit cards',
       icons: [
-        { src: 'https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/visa.sxIq5Dot.svg', alt: 'visa' },
-        { src: 'https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/master.CzeoQWmc.svg', alt: 'master' },
+        {
+          src: 'https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/visa.sxIq5Dot.svg',
+          alt: 'visa',
+        },
+        {
+          src: 'https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/master.CzeoQWmc.svg',
+          alt: 'master',
+        },
       ],
     },
     {
       key: 'cod',
       label: 'Cash on Delivery (COD)',
       content: (
-        <div className="mt-4 text-sm text-gray-700 space-y-2">
+        <div className="text-sm text-gray-700 space-y-2">
           <p>Cash on Delivery (Pay in cash when your order is delivered.)</p>
         </div>
       ),
@@ -32,7 +43,7 @@ export default function CheckoutPage() {
       key: 'bank',
       label: 'Bank Deposit',
       content: (
-        <div className="mt-4 text-sm text-gray-700 space-y-2">
+        <div className="text-sm text-gray-700 space-y-2">
           <p><strong>COMFORA</strong></p>
           <p>JS Bank: Bank Road Rawalpindi</p>
           <p>Account Number: <strong>0002658850</strong></p>
@@ -67,13 +78,13 @@ export default function CheckoutPage() {
         {/* Left Content */}
         <div className="bg-white p-6 flex-1 max-h-[100vh] overflow-y-auto pr-2 hide-scrollbar">
           <div className="space-y-8">
-            {/* Contact Section */}
+            {/* Contact */}
             <div>
               <h2 className="font-semibold text-2xl mb-2">Contact</h2>
               <input
                 type="text"
                 placeholder="Email or mobile phone number"
-                className="w-full border rounded px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-300"
+                className="w-full border rounded px-4 py-3 text-sm"
               />
               <label className="flex items-center mt-3 text-sm">
                 <input type="checkbox" className="mr-2" />
@@ -81,10 +92,10 @@ export default function CheckoutPage() {
               </label>
             </div>
 
-            {/* Delivery Section */}
+            {/* Delivery */}
             <div>
               <h2 className="font-semibold text-2xl mb-2">Delivery</h2>
-              <select className="w-full border rounded px-4 py-3 text-sm mb-3 focus:outline-none focus:ring-2 focus:ring-gray-300">
+              <select className="w-full border rounded px-4 py-3 text-sm mb-3">
                 <option>Pakistan</option>
               </select>
 
@@ -102,14 +113,13 @@ export default function CheckoutPage() {
               </div>
 
               <input placeholder="Phone" className="w-full border rounded px-4 py-3 text-sm mb-3" />
-
               <label className="flex items-center text-sm">
                 <input type="checkbox" className="mr-2" />
                 Save this information for next time
               </label>
             </div>
 
-            {/* Shipping Section */}
+            {/* Shipping */}
             <div>
               <h2 className="font-semibold text-lg mb-2">Shipping method</h2>
               <div className="border rounded p-3 flex justify-between bg-yellow-50 border-yellow-300 text-sm">
@@ -118,25 +128,30 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            {/* Payment Section */}
+            {/* Payment */}
             <div>
-                <h2 className="font-semibold text-2xl mb-2">Payment</h2>
-                <span className="text-sm text-gray-400 py-4 block">
-                  All transactions are secure and encrypted.
-                </span>
-
-                <div className="border rounded p-4 space-y-4">
-                  {paymentOptions.map(({ key, label, icons, content }) => (
-                    <div key={key} className="border rounded p-4 transition-all cursor-pointer"
+              <h2 className="font-semibold text-2xl mb-2">Payment</h2>
+              <span className="text-sm text-gray-400 py-4 block">
+                All transactions are secure and encrypted.
+              </span>
+              <div className="border rounded p-4 space-y-4">
+                {paymentOptions.map(({ key, label, icons, content }) => {
+                  const isSelected = selected === key;
+                  return (
+                    <div
+                      key={key}
                       onClick={() => handleSelect(key)}
+                      className={`border rounded p-4 cursor-pointer transition-all duration-300 ${
+                        isSelected ? 'bg-yellow-50 border-yellow-300' : 'bg-white'
+                      }`}
                     >
-                      <label className="flex items-center space-x-3 text-sm cursor-pointer">
+                      <div className="flex items-center space-x-3 text-sm">
                         <input
                           type="radio"
                           name="payment"
-                          checked={selected === key}
+                          checked={isSelected}
                           onChange={() => {}}
-                          className="accent-yellow-500 cursor-pointer"
+                          className="accent-yellow-500"
                         />
                         <span className="font-medium">{label}</span>
                         {icons && (
@@ -146,27 +161,58 @@ export default function CheckoutPage() {
                             ))}
                           </div>
                         )}
-                      </label>
-                      {selected === key && content && (
-                        <div className="pt-4">{content}</div>
-                      )}
+                      </div>
+                      <div
+                        className={`overflow-hidden transition-all duration-500 ${
+                          isSelected ? 'max-h-[400px] mt-3' : 'max-h-0'
+                        }`}
+                      >
+                        {content}
+                      </div>
                     </div>
-                  ))}
-                </div>
-          </div>
+                  );
+                })}
+              </div>
+            </div>
 
             {/* Billing Address */}
             <div>
-              <h2 className="font-semibold text-lg mb-2">Billing address</h2>
+              <h2 className="font-semibold text-lg mb-2">Billing Address</h2>
               <div className="border rounded p-4 space-y-3 text-sm">
-                <label className="flex items-center space-x-3">
-                  <input type="radio" name="billing" defaultChecked />
+                <div
+                  onClick={() => toggleBillingOption('same')}
+                  className={`flex items-center space-x-3 cursor-pointer transition-all duration-300 ${
+                    activeBilling === 'same' ? 'bg-yellow-100 rounded p-2' : ''
+                  }`}
+                >
+                  <input type="checkbox" readOnly checked={activeBilling === 'same'} />
                   <span>Same as shipping address</span>
-                </label>
-                <label className="flex items-center space-x-3">
-                  <input type="radio" name="billing" />
+                </div>
+
+                <div
+                  onClick={() => toggleBillingOption('different')}
+                  className={`flex items-center space-x-3 cursor-pointer transition-all duration-300 ${
+                    activeBilling === 'different' ? 'bg-yellow-100 rounded p-2' : ''
+                  }`}
+                >
+                  <input type="checkbox" readOnly checked={activeBilling === 'different'} />
                   <span>Use a different billing address</span>
-                </label>
+                </div>
+
+                <div
+                  className={`overflow-hidden transition-all duration-500 ${
+                    activeBilling === 'different' ? 'max-h-[500px] mt-3' : 'max-h-0'
+                  }`}
+                >
+                  {activeBilling === 'different' && (
+                    <div className="space-y-2 border rounded p-4 bg-white">
+                      <input type="text" placeholder="Full Name" className="w-full border rounded px-3 py-2" />
+                      <input type="text" placeholder="Street Address" className="w-full border rounded px-3 py-2" />
+                      <input type="text" placeholder="City" className="w-full border rounded px-3 py-2" />
+                      <input type="text" placeholder="Postal Code" className="w-full border rounded px-3 py-2" />
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -176,7 +222,7 @@ export default function CheckoutPage() {
           </div>
         </div>
 
-        {/* Right Summary Section */}
+        {/* Cart Summary */}
         <div className="w-full lg:w-[400px] h-[calc(100vh-100px)] overflow-y-scroll pr-2 hide-scrollbar">
           <div className="border rounded p-6 shadow-sm bg-transparent">
             <div className="flex items-center mb-4">
