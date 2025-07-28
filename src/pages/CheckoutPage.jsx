@@ -1,20 +1,73 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 export default function CheckoutPage() {
   const navigate = useNavigate();
+  const [selected, setSelected] = useState('');
+
+  const handleSelect = (key) => {
+    setSelected(prev => (prev === key ? '' : key)); // toggle on second click
+  };
+
+  const paymentOptions = [
+    {
+      key: 'safepay',
+      label: 'Safepay Checkout - pay with debit & credit cards',
+      icons: [
+        { src: 'https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/visa.sxIq5Dot.svg', alt: 'visa' },
+        { src: 'https://cdn.shopify.com/shopifycloud/checkout-web/assets/c1.en/assets/master.CzeoQWmc.svg', alt: 'master' },
+      ],
+    },
+    {
+      key: 'cod',
+      label: 'Cash on Delivery (COD)',
+      content: (
+        <div className="mt-4 text-sm text-gray-700 space-y-2">
+          <p>Cash on Delivery (Pay in cash when your order is delivered.)</p>
+        </div>
+      ),
+    },
+    {
+      key: 'bank',
+      label: 'Bank Deposit',
+      content: (
+        <div className="mt-4 text-sm text-gray-700 space-y-2">
+          <p><strong>COMFORA</strong></p>
+          <p>JS Bank: Bank Road Rawalpindi</p>
+          <p>Account Number: <strong>0002658850</strong></p>
+          <p>IBAN: <strong>PK22JSBL9015000002658850</strong></p>
+          <div className="mt-3">
+            <label className="block font-medium mb-1">Upload Receipt / Screenshot:</label>
+            <input
+              type="file"
+              accept="image/*"
+              className="block w-full text-sm text-gray-600
+                file:mr-4 file:py-2 file:px-4
+                file:rounded-md file:border-0
+                file:text-sm file:font-semibold
+                file:bg-yellow-200 file:text-yellow-900
+                hover:file:bg-yellow-300"
+            />
+          </div>
+        </div>
+      ),
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <header className="fixed top-0 z-50 flex items-center justify-between px-6 py-4 border-b bg-white shadow-sm">
+      {/* Header */}
+      <header className="fixed top-0 z-50 flex items-center justify-between px-6 py-4 border-b bg-white shadow-sm w-full">
         <h1 className="font-bold text-2xl pl-[120px]">COMFORA</h1>
-        <FaShoppingCart className="text-2xl pr-[100px] cursor-pointer" onClick={() => navigate('/viewcart')} />
+        <FaShoppingCart className="text-black text-2xl cursor-pointer" onClick={() => navigate('/viewcart')} />
       </header>
 
       <div className="lg:flex gap-6 px-6 lg:px-16 py-[100px]">
-        <div className="bg-white p-6 flex-1 max-h-100vh overflow-y-auto pr-2 hide-scrollbar">
+        {/* Left Content */}
+        <div className="bg-white p-6 flex-1 max-h-[100vh] overflow-y-auto pr-2 hide-scrollbar">
           <div className="space-y-8">
+            {/* Contact Section */}
             <div>
               <h2 className="font-semibold text-2xl mb-2">Contact</h2>
               <input
@@ -28,6 +81,7 @@ export default function CheckoutPage() {
               </label>
             </div>
 
+            {/* Delivery Section */}
             <div>
               <h2 className="font-semibold text-2xl mb-2">Delivery</h2>
               <select className="w-full border rounded px-4 py-3 text-sm mb-3 focus:outline-none focus:ring-2 focus:ring-gray-300">
@@ -55,6 +109,7 @@ export default function CheckoutPage() {
               </label>
             </div>
 
+            {/* Shipping Section */}
             <div>
               <h2 className="font-semibold text-lg mb-2">Shipping method</h2>
               <div className="border rounded p-3 flex justify-between bg-yellow-50 border-yellow-300 text-sm">
@@ -63,25 +118,44 @@ export default function CheckoutPage() {
               </div>
             </div>
 
+            {/* Payment Section */}
             <div>
-              <h2 className="font-semibold text-2xl mb-2">Payment</h2>
-              <span className = "text-sm text-gray-400  py-4">All transactions are secure and encrypted.</span>
-              <div className="border rounded p-4 space-y-3">
-                <label className="flex items-center space-x-3 text-sm">
-                  <input type="radio" name="payment" defaultChecked />
-                  <span>Safepay Checkout - pay with debit & credit cards</span>
-                </label>
-                <label className="flex items-center space-x-3 text-sm">
-                  <input type="radio" name="payment" />
-                  <span>Cash on Delivery (COD)</span>
-                </label>
-                <label className="flex items-center space-x-3 text-sm">
-                  <input type="radio" name="payment" />
-                  <span>Bank Transfer</span>
-                </label>
-              </div>
-            </div>
+                <h2 className="font-semibold text-2xl mb-2">Payment</h2>
+                <span className="text-sm text-gray-400 py-4 block">
+                  All transactions are secure and encrypted.
+                </span>
 
+                <div className="border rounded p-4 space-y-4">
+                  {paymentOptions.map(({ key, label, icons, content }) => (
+                    <div key={key} className="border rounded p-4 transition-all cursor-pointer"
+                      onClick={() => handleSelect(key)}
+                    >
+                      <label className="flex items-center space-x-3 text-sm cursor-pointer">
+                        <input
+                          type="radio"
+                          name="payment"
+                          checked={selected === key}
+                          onChange={() => {}}
+                          className="accent-yellow-500 cursor-pointer"
+                        />
+                        <span className="font-medium">{label}</span>
+                        {icons && (
+                          <div className="flex gap-2 ml-4">
+                            {icons.map(icon => (
+                              <img key={icon.alt} src={icon.src} alt={icon.alt} className="w-8 h-5" />
+                            ))}
+                          </div>
+                        )}
+                      </label>
+                      {selected === key && content && (
+                        <div className="pt-4">{content}</div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+          </div>
+
+            {/* Billing Address */}
             <div>
               <h2 className="font-semibold text-lg mb-2">Billing address</h2>
               <div className="border rounded p-4 space-y-3 text-sm">
@@ -102,6 +176,7 @@ export default function CheckoutPage() {
           </div>
         </div>
 
+        {/* Right Summary Section */}
         <div className="w-full lg:w-[400px] h-[calc(100vh-100px)] overflow-y-scroll pr-2 hide-scrollbar">
           <div className="border rounded p-6 shadow-sm bg-transparent">
             <div className="flex items-center mb-4">
