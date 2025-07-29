@@ -93,9 +93,8 @@ export default function CartPage() {
                 {cartItems.map((item, index) => (
                   <tr key={index} className="border-t">
                     <td className="p-4 flex gap-4">
-                      <img
-                        src={item.image || "/placeholder.jpg"}
-                        alt={item.name}
+                    <img
+quantity                        alt={item.name}
                         className="w-20 h-20 object-cover rounded"
                       />
                       <div>

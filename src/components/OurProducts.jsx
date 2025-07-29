@@ -9,32 +9,13 @@ import shapewearImg from '../assets/images/products/shapewearImg.avif';
 import accessoriesImg from '../assets/images/products/accessoriesImg.avif';
 
 const categories = [
-  {
-    name: "Nighties",
-    image: nightiesImg,
-  },
-  {
-    name: "Panties",
-    image: pantiesImg,
-  },
-  {
-    name: "Bras",
-    image: brasImg,
-  },
-  {
-    name: "Lingerie",
-    image: lingerieImg,
-  },
-  {
-    name: "Shapewear",
-    image: shapewearImg,
-  },
-  {
-    name: "Accessories",
-    image: accessoriesImg,
-  },
+  { name: "Nighties", image: nightiesImg },
+  { name: "Panties", image: pantiesImg },
+  { name: "Bras", image: brasImg },
+  { name: "Lingerie", image: lingerieImg },
+  { name: "Shapewear", image: shapewearImg },
+  { name: "Accessories", image: accessoriesImg },
 ];
-
 
 function OurProducts() {
   const scrollRef = useRef(null);
@@ -49,40 +30,44 @@ function OurProducts() {
   };
 
   return (
-<section className="w-[1280px] h-[535px] py-20 px-12 bg-gray-150">
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-[40px] font-bold mb-10">
+    <section className="w-full py-16 px-4 sm:px-6 md:px-12 lg:px-16 xl:px-20 bg-gray-150">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-10">
           Our Products
         </h2>
 
         <div className="relative">
-              <div
-                ref={scrollRef}
-                className="flex gap-5 overflow-x-auto scroll-smooth scrollbar-hide px-1"
-              >
-            {categories.map((cat) => (
+          <div
+            ref={scrollRef}
+            className="flex gap-5 overflow-x-auto scroll-smooth scrollbar-hide px-1"
+          >
+            {categories.map((cat, index) => (
               <Link
-                className="min-w-[278px] md:min-w-[278px] rounded-2xl overflow-hidden group relative transition-all duration-300 hover:shadow-lg"
+                key={index}
+                className="min-w-[70%] sm:min-w-[220px] md:min-w-[260px] lg:min-w-[278px] rounded-2xl overflow-hidden group relative transition-all duration-300 hover:shadow-lg"
               >
                 <img
                   src={cat.image}
                   alt={cat.name}
-                  className="w-[278px] h-[278px] object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500 ease-in-out"
+                  className="w-full h-[200px] sm:h-[240px] md:h-[260px] lg:h-[278px] object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500 ease-in-out"
                 />
               </Link>
             ))}
           </div>
-          <button
-              className="absolute left-[6px] top-1/2 -translate-y-1/2 z-10 hidden md:block"
-            >
-              <ScrollArrowButton direction="left" onClick={() => scroll("left")} />
-            </button>
 
-            <button
-              className="absolute right-[6px] top-1/2 -translate-y-1/2 z-10 hidden md:block"
-            >
-              <ScrollArrowButton direction="right" onClick={() => scroll("right")} />
-            </button>
+          <button
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-10 hidden md:block"
+            onClick={() => scroll("left")}
+          >
+            <ScrollArrowButton direction="left" />
+          </button>
+
+          <button
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-10 hidden md:block"
+            onClick={() => scroll("right")}
+          >
+            <ScrollArrowButton direction="right" />
+          </button>
         </div>
       </div>
     </section>

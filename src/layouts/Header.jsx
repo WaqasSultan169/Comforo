@@ -18,6 +18,9 @@ function Header() {
   const [showCartDropdown, setShowCartDropdown] = useState(false);
   const dropdownRef = useRef(null);
   const cartRef = useRef(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openMobileCategory, setOpenMobileCategory] = useState(null);
+
 
   const BASE_URL = "https://comfora-site-backend.onrender.com";
   const sessionId = localStorage.getItem("sessionId");
@@ -47,12 +50,12 @@ function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 100);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -113,24 +116,95 @@ function Header() {
 
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${headerBgClass}`}>
-      <div className="bg-black text-white text-xs h-12 flex items-center">
-        <Marquee gradient={false} speed={60}>
+      <div className="bg-black text-white text-xs h-12 flex items-center px-4 sm:px-6 lg:px-8">
+        <Marquee gradient={false} speed={60} className="w-full">
           {messages.map((msg, i) => (
-            <div key={i} className="flex items-center min-w-[340px] px-10">
-              <span className="w-1 h-1 rounded-full bg-white inline-block mr-10" />
-              <p className="font-semibold text-xs whitespace-nowrap">{msg}</p>
-              <span className="w-1 h-1 rounded-full bg-white inline-block ml-10" />
+            <div key={i} className="flex items-center px-4 sm:px-6 min-w-[200px] sm:min-w-[280px] md:min-w-[340px]">
+              <span className="w-1 h-1 rounded-full bg-white inline-block mr-3 sm:mr-6" />
+              <p className="font-medium text-[10px] sm:text-xs md:text-sm whitespace-nowrap">{msg}</p>
+              <span className="w-1 h-1 rounded-full bg-white inline-block ml-3 sm:ml-6" />
             </div>
           ))}
         </Marquee>
       </div>
 
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 h-[168px]">
+      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between px-4 py-2 md:h-[168px]">
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className={`text-2xl ${showWhiteBg ? "text-gray-800" : "text-white"}`}
+            >
+              {isMobileMenuOpen ? <FiChevronUp /> : <FiChevronDown />}
+            </button>
+          </div>
         <Link to="/" className="ml-4">
           <img src={logo} alt="Main Logo" className="w-[120px] h-[120px]" />
         </Link>
 
-        <div ref={dropdownRef} className="hidden md:flex items-center gap-6 text-sm font-bold">
+
+
+         {isMobileMenuOpen && (
+            <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-start">
+              <div className="w-[260px] h-full bg-white shadow-lg p-4 overflow-y-auto">
+                <button onClick={() => setIsMobileMenuOpen(false)} className="text-right w-full mb-4 text-gray-700">
+                  Close ✖
+                </button>
+
+                <Link to="/" className="block text-sm font-bold text-gray-800 mb-2">Shop</Link>
+
+                {/* Bras Dropdown */}
+                <div className="mb-2">
+                  <button
+                    onClick={() => setOpenMobileCategory(openMobileCategory === 'bras' ? null : 'bras')}
+                    className="font-bold text-gray-800 w-full text-left"
+                  >
+                    Bras
+                  </button>
+                      {openMobileCategory === 'bras' && (
+                        <div className="ml-3 mt-1 space-y-1">
+                          <Link to="/collections/embroidered-bra" className="block text-sm text-gray-700">Embroidered Bra</Link>
+                          <Link to="/collections/double-padded-bra" className="block text-sm text-gray-700">Double Padded Bra</Link>
+                          <Link to="/collections/cotton-bra" className="block text-sm text-gray-700">Cotton Bra</Link>
+                          <Link to="/collections/foam-bra" className="block text-sm text-gray-700">Foam Bra</Link>
+                          <Link to="/collections/single-padded-bra" className="block text-sm text-gray-700">Single Padded Bra</Link>
+                          <Link to="/collections/net-bra" className="block text-sm text-gray-700">Net Bra</Link>
+                          <Link to="/collections/nursing-bra" className="block text-sm text-gray-700">Nursing Bra</Link>
+                          <Link to="/collections/sports-bra" className="block text-sm text-gray-700">Sports Bra</Link>
+                          <Link to="/collections/lace-bra" className="block text-sm text-gray-700">Lace Bra</Link>
+                          <Link to="/collections/bralette" className="block text-sm text-gray-700">Bralette</Link>
+                        </div>
+                      )}
+                </div>
+
+                {/* Panties Dropdown */}
+                <div className="mb-2">
+                  <button
+                    onClick={() => setOpenMobileCategory(openMobileCategory === 'panties' ? null : 'panties')}
+                    className="font-bold text-gray-800 w-full text-left"
+                  >
+                    Panties
+                  </button>
+                  {openMobileCategory === 'panties' && (
+                    <div className="ml-3 mt-1 space-y-1">
+                      <Link to="/collections/cotton-panties" className="block text-sm text-gray-700">Cotton Panties</Link>
+                      <Link to="/collections/panties-pack" className="block text-sm text-gray-700">Panties Pack</Link>
+                      <Link to="/collections/period-panties" className="block text-sm text-gray-700">Period Panties</Link>
+                    </div>
+                  )}
+                </div>
+
+                <Link to="/collections/night-wear" className="block text-sm font-bold text-gray-800 mb-2">Night Wear</Link>
+                <Link to="/collections/body-sharper" className="block text-sm font-bold text-gray-800 mb-2">Body Sharpers</Link>
+                <Link to="/collections/camisoles" className="block text-sm font-bold text-gray-800 mb-2">Camisoles</Link>
+                <Link to="/contact" className="block text-sm font-bold text-gray-800 mb-2">Contact</Link>
+              </div>
+            </div>
+          )}
+
+
+
+
+        <div ref={dropdownRef} className="hidden md:flex justify-center flex-1">
           <nav className="hidden md:flex items-center gap-6 text-sm font-bold">
             <Link to="/" className={`hover:text-gray-500 ${showWhiteBg ? "text-gray-800" : "text-white"}`}>Shop</Link>
 
@@ -332,7 +406,11 @@ function Header() {
           </nav>
         </div>
 
-        <div className={`flex items-center gap-7 text-xl leading-none ${showWhiteBg ? "text-gray-800" : "text-white"}`}>
+        <div
+          className={`flex flex-wrap items-center gap-6 sm:gap-5 text-lg sm:text-xl leading-none ml-auto ${
+            showWhiteBg ? "text-gray-800" : "text-white"
+          }`}
+        >
           <FiSearch className="cursor-pointer hover:text-gray-500" />
           <FiUser className="cursor-pointer hover:text-gray-500" />
 
@@ -340,7 +418,7 @@ function Header() {
             <button
               onClick={() => {
                 setShowCartDropdown((prev) => !prev);
-                setOpenDropdown(null); 
+                setOpenDropdown(null);
               }}
               className="relative"
             >
@@ -353,7 +431,8 @@ function Header() {
             </button>
 
             {showCartDropdown && (
-              <div className="absolute right-0 mt-4 md:w-[480px] w-[90vw] max-h-[600px] rounded-[12px] bg-white shadow-lg z-50 transition-all duration-300 overflow-hidden">
+              <div className="absolute right-0 mt-4 w-[90vw] sm:w-[400px] md:w-[480px] max-h-[80vh] rounded-[12px] bg-white shadow-lg z-50 transition-all duration-300 overflow-hidden">
+                {/* Header */}
                 <div className="flex justify-between items-center border-b px-4 py-3">
                   <h3 className="text-base font-semibold text-black">Your Cart</h3>
                   <button
@@ -376,6 +455,7 @@ function Header() {
                   </button>
                 </div>
 
+                {/* Cart Items */}
                 <div className="max-h-[400px] overflow-y-auto px-4 py-3">
                   {cartItems.length === 0 ? (
                     <p className="text-sm text-gray-600">Your cart is empty.</p>
@@ -383,17 +463,25 @@ function Header() {
                     cartItems.map((item, idx) => (
                       <div key={idx} className="flex items-start gap-4 mb-4">
                         <img
-                          src={item.image}
+                          src={item.image ? `${BASE_URL}/uploads/${item.image}` : "/placeholder.jpg"}
                           alt={item.name}
                           className="w-16 h-16 object-cover rounded-md"
                         />
                         <div className="flex-1">
-                          <p className="text-sm font-medium text-gray-900">{item.name}</p>
-                          <p className="text-xs text-gray-600">{item.color} / {item.size}</p>
+                          <p className="text-sm font-medium text-gray-900">
+                            {item.name}
+                          </p>
+                          <p className="text-xs text-gray-600">
+                            {item.color} / {item.size}
+                          </p>
 
                           <div className="flex justify-between items-center mt-1">
-                            <span className="text-sm font-semibold text-black">Rs.{item.price}</span>
-                            <span className="text-xs text-gray-600">Qty: {item.quantity}</span>
+                            <span className="text-sm font-semibold text-black">
+                              Rs.{item.price}
+                            </span>
+                            <span className="text-xs text-gray-600">
+                              Qty: {item.quantity}
+                            </span>
                           </div>
 
                           <button
@@ -408,15 +496,23 @@ function Header() {
                   )}
                 </div>
 
+                {/* Footer */}
                 {cartItems.length > 0 && (
                   <div className="border-t px-4 py-3 space-y-2">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm font-semibold text-gray-700">Total</span>
-                      <span className="text-base font-bold text-black">Rs.{totalAmount.toFixed(2)} PKR</span>
+                      <span className="text-sm font-semibold text-gray-700">
+                        Total
+                      </span>
+                      <span className="text-base font-bold text-black">
+                        Rs.{totalAmount.toFixed(2)} PKR
+                      </span>
                     </div>
                     <p className="text-xs text-gray-600">
                       Taxes and{" "}
-                      <Link to="/policies/shipping-policy" className="underline hover:text-black">
+                      <Link
+                        to="/policies/shipping-policy"
+                        className="underline hover:text-black"
+                      >
                         shipping
                       </Link>{" "}
                       calculated at checkout.
@@ -428,7 +524,8 @@ function Header() {
                       >
                         View Cart
                       </Link>
-                      <Link to="/checkout"
+                      <Link
+                        to="/checkout"
                         className="w-1/2 text-sm font-semibold bg-black hover:bg-gray-800 text-white py-2 rounded-full text-center"
                       >
                         Checkout
@@ -440,9 +537,10 @@ function Header() {
             )}
           </div>
         </div>
+
       </div>
     </header>
   );
 }
 
-export default Header;
+export default Header; 

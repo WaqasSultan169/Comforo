@@ -30,7 +30,7 @@ const ProductDetails = () => {
   const sessionId = localStorage.getItem("sessionId");
 
   const handleAddToCart = async () => {
-    console.log("Clicked Add to Cart"); // Add this
+    console.log("Clicked Add to Cart"); 
     
     const sessionId = localStorage.getItem("sessionId");
   
@@ -84,8 +84,8 @@ const ProductDetails = () => {
   }, [id]);
 
   const handleWhatsAppOrder = () => {
-    const phoneNumber = "03321514622";
-    const message = `Hi, I want to order the product: *${product.name}* (ID: ${product.id}) – Price: $${product.price}`;
+    const phoneNumber = "03289159622";
+    const message = `Hi, I want to order the product: *${product.name}*  – Price: PKR ${product.price}`;
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
   };

@@ -43,35 +43,41 @@ export default function FAQSection() {
 
   return (
     <section className="bg-gray-50 py-16 px-4 flex justify-center">
-      <div className="bg-white rounded-2xl shadow-md w-[1184px] p-12 flex flex-col md:flex-row gap-[110px]">
+      <div className="bg-white rounded-2xl shadow-md w-full max-w-7xl p-6 md:p-12 flex flex-col lg:flex-row gap-10 lg:gap-[110px]">
+        {/* Left Content */}
         <div className="flex-1">
-          <h2 className="text-4xl font-bold mb-9">FAQ</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">FAQ</h2>
           <p className="text-[15px] text-gray-800 mb-2">
             Our customer support is available Monday to Friday: 8am–8:30pm.
           </p>
           <p className="text-gray-500">Average answer time: 24h</p>
         </div>
 
-        <div className="flex-1 bg-gray-100 rounded-xl p-6 shadow-sm w-[496px] h-[480px]">
-          <div className="flex flex-col gap-5">
+        {/* Right Content */}
+        <div className="flex-1 bg-gray-100 rounded-xl p-6 shadow-sm max-h-[480px] overflow-y-auto">
+          <div className="flex flex-col gap-4">
             {faqs.map((faq, index) => (
-              <div key={index} className="border-b last:border-none">
+              <div key={index} className="border-b border-gray-300 last:border-none">
                 <button
                   onClick={() => toggleAccordion(index)}
                   className="w-full flex justify-between items-center py-3 text-left font-semibold text-sm md:text-base"
                 >
-                  {faq.question}
+                  <span>{faq.question}</span>
                   <FaChevronDown
-                    className={`transition-transform duration-300 ${
+                    className={`transform transition-transform duration-300 ${
                       openIndex === index ? "rotate-180" : ""
                     }`}
                   />
                 </button>
-                {openIndex === index && (
-                  <div className="pb-4 text-sm text-gray-700 leading-relaxed">
+                <div
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                    openIndex === index ? "max-h-[500px] opacity-100 pt-2" : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <p className="text-sm text-gray-700 leading-relaxed">
                     {faq.answer}
-                  </div>
-                )}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

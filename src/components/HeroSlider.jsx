@@ -22,19 +22,18 @@ const bannerImages = [banner1, banner2, banner3, banner4, banner5];
 const mobileBannerImages = [mobBanner1, mobBanner2, mobBanner3, mobBanner4, mobBanner5];
 
 function HeroSlider() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
-    const checkScreenSize = () => setIsMobile(window.innerWidth < 768);
-    checkScreenSize();
-    window.addEventListener("resize", checkScreenSize);
-    return () => window.removeEventListener("resize", checkScreenSize);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const selectedImages = isMobile ? mobileBannerImages : bannerImages;
 
   return (
-    <div className="w-full h-[300px] md:w-[1280px] md:h-[640px] overflow-hidden mt-8 relative">
+    <div className="w-full overflow-hidden mt-8">
       <Swiper
         modules={[Pagination, Autoplay, EffectFade]}
         effect="fade"
@@ -57,18 +56,17 @@ function HeroSlider() {
             `;
           },
         }}
-        className="w-full h-full"
+        className="w-full"
       >
         {selectedImages.map((img, index) => (
-          <SwiperSlide key={index} className="relative">
-            <div className="w-full h-full bg-white flex items-center justify-center">
+          <SwiperSlide key={index}>
+            <div className="w-full">
               <img
                 src={img}
                 alt={`Banner ${index + 1}`}
-                className="max-w-full max-h-full object-contain"
+                className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[640px] object-cover"
               />
             </div>
-            <div className="absolute inset-0 bg-black/30 z-10" />
           </SwiperSlide>
         ))}
       </Swiper>

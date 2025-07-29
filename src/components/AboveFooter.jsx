@@ -3,7 +3,7 @@ import { FaShippingFast, FaHeadset, FaTags, FaLock } from "react-icons/fa";
 
 const items = [
   {
-    icon: <FaShippingFast className="text-gray-700 text-2xl md:text-3xl" />,
+    icon: <FaShippingFast className="text-gray-700 text-3xl" />,
     title: "Free shipping",
     text: (
       <>
@@ -12,7 +12,7 @@ const items = [
     ),
   },
   {
-    icon: <FaHeadset className="text-gray-700 text-2xl md:text-3xl" />,
+    icon: <FaHeadset className="text-gray-700 text-3xl" />,
     title: "Customer service",
     text: (
       <>
@@ -22,7 +22,7 @@ const items = [
     ),
   },
   {
-    icon: <FaTags className="text-gray-700 text-2xl md:text-3xl" />,
+    icon: <FaTags className="text-gray-700 text-3xl" />,
     title: "Refer a friend",
     text: (
       <>
@@ -32,7 +32,7 @@ const items = [
     ),
   },
   {
-    icon: <FaLock className="text-gray-700 text-2xl md:text-3xl" />,
+    icon: <FaLock className="text-gray-700 text-3xl" />,
     title: "Secure payment",
     text: (
       <>
@@ -45,10 +45,10 @@ const items = [
 
 export default function AboveFooter() {
   return (
-    <section className="bg-gray-150 py-12 px-4 w-[1280px] h-[293px]">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+    <section className="bg-gray-100 py-10 px-4 w-full">
+      <div className="max-w-screen-xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
         {items.map((item, index) => (
-          <div key={index} className="flex flex-col items-center gap-3">
+          <div key={index} className="flex flex-col items-center gap-2 px-4">
             {item.icon}
             <p className="font-semibold text-base md:text-lg">{item.title}</p>
             <p className="text-sm text-gray-600 leading-relaxed">{item.text}</p>
