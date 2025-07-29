@@ -32,6 +32,12 @@ import Blouse from "./pages/collections/blouse";
 import CartPage from "./pages/CartPage";
 import ShippingPolicy from "./pages/policies/ShippingPolicy";
 import CheckoutPage from "./pages/CheckoutPage";
+import SearchPage from "./pages/FooterPages/SearchPage";
+import AboutPage from "./pages/FooterPages/AboutPage";
+import TermsAndConditions from "./pages/FooterPages/TermsCondition";
+import RefundPolicy from "./pages/FooterPages/RefundPolicyExchange";
+import PrivacyPolicy from "./pages/FooterPages/PrivacyPolicyPage";
+import PolicyPage from "./pages/FooterPages/PolicyPage";
 
 function App() {
   const location = useLocation();
@@ -80,6 +86,12 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/policies/shipping-policy" element={<ShippingPolicy />} />
+          <Route path="/Search" element={<SearchPage />} />
+          <Route path="/about-comfora" element={<AboutPage />} />
+          <Route path="/terms-conditions" element={<TermsAndConditions />} />
+          <Route path="/refund-cancellation-exchange-policy" element={<RefundPolicy />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/pricing-payment-shipping-delivery-policy" element={<PolicyPage />} />
         </Route>
       </Routes>
     </AnimatePresence>

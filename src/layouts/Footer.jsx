@@ -4,6 +4,7 @@ import {
   FaInstagram,
   FaWhatsapp,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -49,13 +50,13 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-[15px] mb-6">COMFORA</h4>
             <ul className="space-y-4 text-gray-500">
-              <li><a href="/search" className="hover:text-black">Search</a></li>
-              <li><a href="/pages/about-comfora" className="hover:text-black">About Comfora</a></li>
-              <li><a href="/pages/terms-conditions" className="hover:text-black">Terms & Conditions</a></li>
-              <li><a href="/pages/refund-cancellation-exchange-policy" className="hover:text-black">Refund, Cancellation & Exchange Policy</a></li>
-              <li><a href="/policies/privacy-policy" className="hover:text-black">Privacy Policy</a></li>
-              <li><a href="/pages/pricing-payment-shipping-delivery-policy" className="hover:text-black">Pricing, Payment, Shipping & Delivery Policy</a></li>
-              <li><a href="/pages/contact" className="hover:text-black">Contact</a></li>
+              <li><Link to="/Search" className="hover:text-black">Search</Link></li>
+              <li><Link to="/about-comfora" className="hover:text-black">About Comfora</Link></li>
+              <li><Link to="terms-conditions" className="hover:text-black">Terms & Conditions</Link></li>
+              <li><Link to="/refund-cancellation-exchange-policy" className="hover:text-black">Refund, Cancellation & Exchange Policy</Link></li>
+              <li><Link to="/privacy-policy" className="hover:text-black">Privacy Policy</Link></li>
+              <li><Link to="/pricing-payment-shipping-delivery-policy" className="hover:text-black">Pricing, Payment, Shipping & Delivery Policy</Link></li>
+              <li><Link to="/contact" className="hover:text-black">Contact</Link></li>
             </ul>
           </div>
 
@@ -82,7 +83,7 @@ export default function Footer() {
               <FaFacebookF size={22} />
             </a>
             <a
-              href="https://www.instagram.com/comfora_pk"
+              href="https://www.instagram.com/comfora_pk?igsh=MWQzaG9hOWp6d2hnaw%3D%3D&utm_source=qr"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
@@ -90,7 +91,7 @@ export default function Footer() {
               <FaInstagram size={24} />
             </a>
             <a
-              href="tel:+923321514622"
+              href="tel:+92 328 9159622"
               className="text-black"
               aria-label="WhatsApp"
             >
@@ -98,10 +99,11 @@ export default function Footer() {
             </a>
           </div>
 
-          <p className="mt-6 md:mt-0 text-gray-500 text-sm">
+          
+        </div>
+        <p className="justify-start pt-[60px] mt-[50px] md:mt-0 text-gray-500 text-sm">
             © 2025, COMFORA.Powered By ------ 
           </p>
-        </div>
       </div>
     </footer>
   );
