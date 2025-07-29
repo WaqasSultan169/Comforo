@@ -38,12 +38,15 @@ import TermsAndConditions from "./pages/FooterPages/TermsCondition";
 import RefundPolicy from "./pages/FooterPages/RefundPolicyExchange";
 import PrivacyPolicy from "./pages/FooterPages/PrivacyPolicyPage";
 import PolicyPage from "./pages/FooterPages/PolicyPage";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   const location = useLocation();
 
   return (
+
     <AnimatePresence mode="wait">
+      <ScrollToTop />
       <Routes location={location} key={location.pathname}>
         <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AddProduct />} />
