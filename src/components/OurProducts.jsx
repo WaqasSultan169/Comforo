@@ -24,37 +24,37 @@ function OurProducts() {
     const { current } = scrollRef;
     if (!current) return;
     current.scrollBy({
-      left: direction === "left" ? -300 : 300,
+      left: direction === "left" ? -350 : 350,
       behavior: "smooth",
     });
   };
 
   return (
-    <section className="w-full py-16 px-4 sm:px-6 md:px-12 lg:px-16 xl:px-20 bg-gray-150">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-10">
-          Our Products
-        </h2>
+    <section className="w-full py-16 px-4 sm:px-6 md:px-12 lg:px-20 bg-gray-150">
+      <div className="max-w-[1600px] mx-auto">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-10">Our Products</h2>
 
         <div className="relative">
           <div
             ref={scrollRef}
-            className="flex gap-5 overflow-x-auto scroll-smooth scrollbar-hide px-1"
+            className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide px-1"
           >
             {categories.map((cat, index) => (
               <Link
                 key={index}
-                className="min-w-[70%] sm:min-w-[220px] md:min-w-[260px] lg:min-w-[278px] rounded-2xl overflow-hidden group relative transition-all duration-300 hover:shadow-lg"
+                to="#"
+                className="min-w-[70%] sm:min-w-[220px] md:min-w-[260px] lg:min-w-[280px] xl:min-w-[300px] rounded-2xl overflow-hidden group relative transition-all duration-300 hover:shadow-lg"
               >
                 <img
                   src={cat.image}
                   alt={cat.name}
-                  className="w-full h-[200px] sm:h-[240px] md:h-[260px] lg:h-[278px] object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500 ease-in-out"
+                  className="w-full h-[200px] sm:h-[240px] md:h-[260px] lg:h-[278px] xl:h-[300px] object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500 ease-in-out"
                 />
               </Link>
             ))}
           </div>
 
+          {/* Scroll Left */}
           <button
             className="absolute left-2 top-1/2 -translate-y-1/2 z-10 hidden md:block"
             onClick={() => scroll("left")}
@@ -62,6 +62,7 @@ function OurProducts() {
             <ScrollArrowButton direction="left" />
           </button>
 
+          {/* Scroll Right */}
           <button
             className="absolute right-2 top-1/2 -translate-y-1/2 z-10 hidden md:block"
             onClick={() => scroll("right")}

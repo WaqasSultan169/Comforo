@@ -38,7 +38,7 @@ const EmbroideredBra = () => {
 
   return (
     <PageTransition>
-      <div className="pt-28 w-full">
+      <div className="pt-28 w-full h-auto">
         <CollectionBanner
           title="Embroidered Bra"
           imageUrl="https://comfora.pk/cdn/shop/collections/undergarments-natural-4-middle.jpg?v=1736936832&width=1800"

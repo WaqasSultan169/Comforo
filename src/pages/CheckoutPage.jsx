@@ -13,6 +13,7 @@ export default function CheckoutPage() {
   const [activeBilling, setActiveBilling] = useState('');
   const [cartData, setCartData] = useState([]);
   const [subtotal, setSubtotal] = useState(0);
+  const [shippingPrice, setShippingPrice] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState({
     firstName: '',
@@ -103,8 +104,10 @@ export default function CheckoutPage() {
         const response = await fetch(`${BASE_URL}/api/cart/${sessionId}`);
         const data = await response.json();
         setCartData(data?.items || []);
-        const total = data?.items?.reduce((acc, item) => acc + item.price, 0);
-        setSubtotal(total || 0);
+        const totalPrice = data?.items?.reduce((acc, item) => acc + item.price, 0);
+        const shipping = data?.items?.length > 0 ? data.items[0].shippingPrice || 0 : 0;
+        setSubtotal(totalPrice + shipping);
+        setShippingPrice(shipping);        
       } catch (err) {
         console.error('Failed to fetch cart data:', err);
       }
@@ -419,11 +422,11 @@ export default function CheckoutPage() {
               </div>
               <div className="flex justify-between">
                 <span>Shipping</span>
-                <span>FREE</span>
+                <span>Rs {shippingPrice.toLocaleString()}</span>
               </div>
               <div className="flex justify-between font-bold text-base">
                 <span>Total</span>
-                <span>Rs {subtotal}</span>
+                <span>Rs {(subtotal + shippingPrice).toLocaleString()}</span>
               </div>
             </div>
           </div>

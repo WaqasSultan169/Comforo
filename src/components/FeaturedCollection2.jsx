@@ -85,18 +85,17 @@ export default function FeaturedCollection2() {
             ref={scrollRef}
             className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide px-1"
           >
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {products.slice(0, 6).map((p) => (
-          <ProductCard
-            key={p._id}
-            p={p}
-            selectedColors={selectedColors}
-            setSelectedColors={setSelectedColors}
-            onColorSelect={handleColorSelect}
-          />
-        ))}
-
-    </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+              {products.slice(0, 6).map((p) => (
+                <ProductCard
+                  key={p._id}
+                  p={p}
+                  selectedColors={selectedColors}
+                  setSelectedColors={setSelectedColors}
+                  onColorSelect={handleColorSelect}
+                />
+              ))}
+            </div>
           </div>
 
           {showLeft && (
@@ -116,6 +115,7 @@ export default function FeaturedCollection2() {
             </button>
           )}
         </div>
+
       </div>
     </section>
   );
