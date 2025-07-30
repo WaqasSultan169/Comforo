@@ -29,8 +29,8 @@ const AddToCartModal = ({ product, selectedColor, selectedSize, onClose }) => {
 
             <div className="flex mt-4 items-start gap-4">
               <img
-                src={`${BASE_IMAGE_URL}${product?.images?.[0]}`}
-                alt={product.name}
+                    src={product.images?.[0] || "https://via.placeholder.com/100x120?text=No+Image"}
+                    alt={product.name}
                 className="w-20 h-20 object-cover rounded"
               />
               <div>

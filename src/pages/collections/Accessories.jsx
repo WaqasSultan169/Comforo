@@ -23,7 +23,7 @@ const Accessories = () => {
         const data = await response.json();
 
         const accessoriesOnly = data.filter(
-          (product) => product.category?.toLowerCase() === "accessoried"
+          (product) => product.category?.toLowerCase() === "accessories"
         );
         setProducts(accessoriesOnly);
       } catch (error) {
