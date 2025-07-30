@@ -11,13 +11,10 @@ const RelatedProducts = ({ products = [], currentProductId }) => {
     }));
   };
 
-  const BASE_URL = "https://comfora-site-backend.onrender.com";
-  const IMAGE_BASE_URL = `${BASE_URL}/uploads/`;
-
   const filtered = products
     .filter((p) => p._id !== currentProductId)
     .sort(() => 0.5 - Math.random())
-    .slice(0, 6); // Pick 6, show 3 per row
+    .slice(0, 6); 
 
   if (!filtered.length) return null;
 
@@ -31,11 +28,9 @@ const RelatedProducts = ({ products = [], currentProductId }) => {
         {filtered.map((p) => {
           const selectedColor = selectedColors[p._id] || p.colors?.[0];
           const mainImg = p.images?.[0]
-            ? `${IMAGE_BASE_URL}${p.images[0]}`
+            ? p.images[0]
             : "https://via.placeholder.com/300x400?text=No+Image";
-          const hoverImg = p.images?.[1]
-            ? `${IMAGE_BASE_URL}${p.images[1]}`
-            : mainImg;
+          const hoverImg = p.images?.[1] || mainImg;
           const displayColors = p.colors?.slice(0, 3) || [];
 
           return (

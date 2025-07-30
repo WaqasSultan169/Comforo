@@ -463,8 +463,8 @@ function Header() {
                     cartItems.map((item, idx) => (
                       <div key={idx} className="flex items-start gap-4 mb-4">
                         <img
-                          src={item.image ? `${BASE_URL}/uploads/${item.image}` : "/placeholder.jpg"}
-                          alt={item.name}
+                        src={item.image || "https://via.placeholder.com/100x120?text=No+Image"}
+                        alt={item.name}
                           className="w-16 h-16 object-cover rounded-md"
                         />
                         <div className="flex-1">
@@ -472,7 +472,7 @@ function Header() {
                             {item.name}
                           </p>
                           <p className="text-xs text-gray-600">
-                            {item.color} / {item.size}
+                            {item.selectedColor} / {item.selectedSize}
                           </p>
 
                           <div className="flex justify-between items-center mt-1">

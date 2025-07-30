@@ -15,7 +15,6 @@ const ProductDetails = () => {
 
   const { id } = useParams();
   const BASE_URL = "https://comfora-site-backend.onrender.com";
-  const IMAGE_BASE_URL = `${BASE_URL}/uploads/`;
 
   useEffect(() => {
     let session = localStorage.getItem("sessionId");
@@ -62,8 +61,10 @@ const ProductDetails = () => {
 
   const handleWhatsAppOrder = () => {
     const phoneNumber = "03289159622";
-    const message = `Hi, I want to order the product: *${product.name}*  – Price: PKR ${product.price}`;
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    const message = `Hi, I want to order the product: *${product.name}* – Price: PKR ${product.price}`;
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message
+    )}`;
     window.open(url, "_blank");
   };
 
@@ -73,23 +74,23 @@ const ProductDetails = () => {
     <>
       <div className="pt-[240px] pb-10 px-4 md:px-8 flex flex-col lg:flex-row gap-10 w-full max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row gap-4 w-full lg:w-1/2">
-        <div className="flex md:flex-col gap-2 overflow-x-auto md:overflow-y-auto md:max-h-[450px] pr-1">
-          {product.images.map((img, index) => (
-            <img
-              key={index}
-              src={IMAGE_BASE_URL + img}
-              onClick={() => setSelectedImage(img)}
-              className={`w-16 h-20 rounded-md object-cover border cursor-pointer flex-shrink-0 ${
-                selectedImage === img ? "border-black" : "border-gray-300"
-              }`}
-              alt={`Thumbnail ${index + 1}`}
-            />
-          ))}
-        </div>
+          <div className="flex md:flex-col gap-2 overflow-x-auto md:overflow-y-auto md:max-h-[450px] pr-1">
+            {product.images.map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                onClick={() => setSelectedImage(img)}
+                className={`w-16 h-20 rounded-md object-cover border cursor-pointer flex-shrink-0 ${
+                  selectedImage === img ? "border-black" : "border-gray-300"
+                }`}
+                alt={`Thumbnail ${index + 1}`}
+              />
+            ))}
+          </div>
 
           <div className="flex-1">
             <img
-              src={IMAGE_BASE_URL + selectedImage}
+              src={selectedImage}
               alt="Selected"
               className="w-full max-h-[500px] object-contain bg-white rounded-md"
             />
@@ -115,13 +116,15 @@ const ProductDetails = () => {
               Color: {selectedColor}
             </p>
             <div className="flex gap-2">
-            {product.colors.map((color, idx) => (
+              {product.colors.map((color, idx) => (
                 <button
                   key={idx}
                   onClick={() => setSelectedColor(color)}
                   title={color}
                   className={`w-10 h-10 md:w-12 md:h-12 rounded-full border-2 transition-all ${
-                    selectedColor === color ? "ring-2 ring-black" : "border-gray-300"
+                    selectedColor === color
+                      ? "ring-2 ring-black"
+                      : "border-gray-300"
                   }`}
                   style={{ backgroundColor: color.trim().toLowerCase() }}
                 />
@@ -208,17 +211,17 @@ const ProductDetails = () => {
           {product.description && (
             <div className="text-gray-800 mt-10 space-y-4 leading-relaxed text-sm md:text-base">
               {(() => {
-                const lines = product.description.split('\n').filter(Boolean);
+                const lines = product.description.split("\n").filter(Boolean);
                 const intro = [];
                 const bullets = [];
                 const outro = [];
                 let inBullet = false;
                 let inOutro = false;
 
-                lines.forEach(line => {
-                  if (line.trim().startsWith('-')) {
+                lines.forEach((line) => {
+                  if (line.trim().startsWith("-")) {
                     inBullet = true;
-                    if (!inOutro) bullets.push(line.replace(/^- /, '').trim());
+                    if (!inOutro) bullets.push(line.replace(/^- /, "").trim());
                   } else if (inBullet) {
                     inOutro = true;
                     outro.push(line.trim());

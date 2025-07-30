@@ -12,6 +12,7 @@ export default function CartPage() {
   const sessionId = localStorage.getItem("sessionId");
 
 
+  
   useEffect(() => {
     const fetchCart = async () => {
       if (!sessionId) return;
@@ -91,10 +92,13 @@ export default function CartPage() {
               </thead>
               <tbody className="text-sm">
                 {cartItems.map((item, index) => (
+
                   <tr key={index} className="border-t">
                     <td className="p-4 flex gap-4">
                     <img
-quantity                        alt={item.name}
+                        src={item.image || "https://via.placeholder.com/100x120?text=No+Image"}
+                        quantity                       
+                        alt={item.name}
                         className="w-20 h-20 object-cover rounded"
                       />
                       <div>

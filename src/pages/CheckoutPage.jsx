@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -170,7 +170,7 @@ export default function CheckoutPage() {
     <ToastContainer position="top-right" autoClose={3000} />
     <div className="min-h-screen bg-gray-100">
       <header className="fixed top-0 z-50 flex items-center justify-between px-6 py-4 border-b bg-white shadow-sm w-full">
-        <h1 className="font-bold text-2xl pl-[120px]">COMFORA</h1>
+      <Link to="/"><h1 className="font-bold text-2xl pl-[120px]">COMFORA</h1></Link>
         <FaShoppingCart className="text-black text-2xl cursor-pointer" onClick={() => navigate('/cart')} />
       </header>
 
@@ -379,8 +379,8 @@ export default function CheckoutPage() {
               >
                 <div className="relative">
                   <img
-                    src={item.image ? `${BASE_URL}/uploads/${item.image}` : "/placeholder.jpg"}
-                    alt={item.title}
+                    src={item.image || "https://via.placeholder.com/100x120?text=No+Image"}
+                    alt={item.name}
                     className="w-20 h-20 object-cover rounded-md"
                   />
                   {item.quantity && (

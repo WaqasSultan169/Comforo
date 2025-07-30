@@ -85,8 +85,8 @@ export default function FeaturedCollection3() {
             ref={scrollRef}
             className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide px-1"
           >
-          {products.map((p) => (
-      <div className="min-w-[378px]" key={p._id}>
+          {products.slice(0, 6).map((p) => (
+          <div className="min-w-[378px]" key={p._id}>
           <ProductCard
             key={p._id}
             p={p}

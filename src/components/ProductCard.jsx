@@ -3,14 +3,16 @@ import { Link } from "react-router-dom";
 import QuickAddModal from "./QuickAddModal";
 import AddToCartModal from "./AddToCartModal";
 
-const ProductCard = ({ p, selectedColors, setSelectedColors, onColorSelect }) => {
+const ProductCard = ({
+  p,
+  selectedColors,
+  setSelectedColors,
+  onColorSelect,
+}) => {
   const [hoveredImage, setHoveredImage] = useState(null);
   const [showQuickViewModal, setShowQuickViewModal] = useState(false);
   const [showAddToCartModal, setShowAddToCartModal] = useState(false);
   const [selectedSize, setSelectedSize] = useState(null);
-
-  const BASE_URL = "https://comfora-site-backend.onrender.com";
-  const BASE_IMAGE_URL = `${BASE_URL}/uploads/`;
 
   const displayColors = p.colors?.slice(0, 3) || [];
   const selectedColor = selectedColors?.[p._id] || p.colors?.[0];
@@ -24,13 +26,12 @@ const ProductCard = ({ p, selectedColors, setSelectedColors, onColorSelect }) =>
     }
   }, [p, selectedColors, setSelectedColors]);
 
+  // ✅ Using Cloudinary URLs directly
   const mainImg = p.images?.[0]
-    ? `${BASE_IMAGE_URL}${p.images[0]}`
+    ? p.images[0]
     : "https://via.placeholder.com/300x400?text=No+Image";
 
-  const hoverImg = p.images?.[1]
-    ? `${BASE_IMAGE_URL}${p.images[1]}`
-    : mainImg;
+  const hoverImg = p.images?.[1] ? p.images[1] : mainImg;
 
   const handleAddToCart = (size) => {
     setSelectedSize(size);
@@ -108,7 +109,9 @@ const ProductCard = ({ p, selectedColors, setSelectedColors, onColorSelect }) =>
         </div>
 
         {selectedColor && (
-          <p className="text-xs text-gray-400 mt-1">Selected: {selectedColor}</p>
+          <p className="text-xs text-gray-400 mt-1">
+            Selected: {selectedColor}
+          </p>
         )}
       </div>
 
@@ -117,7 +120,7 @@ const ProductCard = ({ p, selectedColors, setSelectedColors, onColorSelect }) =>
           product={p}
           selectedColor={selectedColor}
           onClose={() => setShowQuickViewModal(false)}
-          onAddToCart={handleAddToCart} 
+          onAddToCart={handleAddToCart}
         />
       )}
 

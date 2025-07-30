@@ -17,7 +17,7 @@ export default function FeaturedCollection() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("https://comfora-site-backend.onrender.com/api/products?category=bras");
+        const res = await axios.get(`${BASE_URL}/api/products?category=bras`);
         setProducts(res.data);
       } catch (err) {
         console.error("Error fetching products:", err);
@@ -85,17 +85,18 @@ export default function FeaturedCollection() {
             ref={scrollRef}
             className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide px-1"
           >
-      <div className="px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {products.map((p) => (
-          <ProductCard
-            key={p._id}
-            p={p}
-            selectedColors={selectedColors}
-            setSelectedColors={setSelectedColors}
-            onColorSelect={handleColorSelect}
-          />
-        ))}
-    </div>
+          <div className="px-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {products.slice(0, 6).map((p) => (
+              <ProductCard
+                key={p._id}
+                p={p}
+                selectedColors={selectedColors}
+                setSelectedColors={setSelectedColors}
+                onColorSelect={handleColorSelect}
+              />
+            ))}
+          </div>
+
           </div>
 
           {showLeft && (
