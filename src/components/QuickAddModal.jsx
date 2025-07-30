@@ -5,8 +5,6 @@ const QuickAddModal = ({ product, selectedColor, onClose, onAddToCart }) => {
   const [selectedSize, setSelectedSize] = useState(null);
   const modalRef = useRef(null);
 
-  const BASE_IMAGE_URL = "https://comfora-site-backend.onrender.com/uploads/";
-  const productImage = `${BASE_IMAGE_URL}${product.images?.[0]}`;
 
   const handleAddToCart = async () => {
     if (!selectedSize) return;
@@ -86,8 +84,8 @@ const QuickAddModal = ({ product, selectedColor, onClose, onAddToCart }) => {
 
         <div className="flex flex-col sm:flex-row items-start gap-4">
           <img
-            src={productImage}
-            alt={product.name}
+                    src={product.images?.[0] || "https://via.placeholder.com/100x120?text=No+Image"}
+                    alt={product.name}
             className="w-24 h-24 object-cover rounded"
           />
           <div className="flex-1">
