@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate,useLocation } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,6 +15,7 @@ export default function CheckoutPage() {
   const [subtotal, setSubtotal] = useState(0);
   const [shippingPrice, setShippingPrice] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [isBuyNow, setIsBuyNow] = useState(false);
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
@@ -30,6 +31,8 @@ export default function CheckoutPage() {
 
   const BASE_URL = "https://comfora-site-backend.onrender.com";
   const sessionId = localStorage.getItem("sessionId");
+
+  const routerLocation = useLocation();
 
   const handleSubmit = async () => {
     try {
@@ -74,6 +77,7 @@ export default function CheckoutPage() {
         }
       
         setShowModal(true);
+        localStorage.removeItem("buyNowItem");
       }
        else {
         const errorMessage = res?.message || "Order failed. Please try again.";
@@ -98,23 +102,42 @@ export default function CheckoutPage() {
     setActiveBilling(prev => (prev === option ? '' : option));
   };
 
+
   useEffect(() => {
-    async function fetchCart() {
-      try {
-        const response = await fetch(`${BASE_URL}/api/cart/${sessionId}`);
-        const data = await response.json();
-        setCartData(data?.items || []);
-        const totalPrice = data?.items?.reduce((acc, item) => acc + item.price, 0);
-        const shipping = data?.items?.length > 0 ? data.items[0].shippingPrice || 0 : 0;
-        setSubtotal(totalPrice + shipping);
-        setShippingPrice(shipping);        
-      } catch (err) {
-        console.error('Failed to fetch cart data:', err);
+    const buyNowItem = JSON.parse(localStorage.getItem("buyNowProduct"));
+  
+    async function setupCart() {
+      if (buyNowItem) {
+        setIsBuyNow(true);
+        setCartData([buyNowItem]);
+        setSubtotal(buyNowItem.price);
+        setShippingPrice(buyNowItem.shippingPrice || 0);
+      } else {
+        setIsBuyNow(false);
+        try {
+          const response = await fetch(`${BASE_URL}/api/cart/${sessionId}`);
+          const data = await response.json();
+          const cartItems = data?.items || [];
+  
+          setCartData(cartItems);
+  
+          const total = cartItems.reduce(
+            (acc, item) => acc + item.price * item.quantity,
+            0
+          );
+  
+          const shipping = cartItems.length > 0 ? cartItems[0].shippingPrice || 0 : 0;
+          setSubtotal(total);
+          setShippingPrice(shipping);
+        } catch (err) {
+          console.error('Failed to fetch cart data:', err);
+        }
       }
     }
-
-    fetchCart();
-  }, []);
+  
+    setupCart();
+  }, [sessionId]);
+  
 
   const paymentOptions = [
     {

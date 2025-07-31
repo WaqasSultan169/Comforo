@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import {useNavigate, useParams } from "react-router-dom";
 import RelatedProducts from "../components/RelatedProducts";
 import AddToCartModal from "../components/AddToCartModal";
 
@@ -15,7 +15,21 @@ const ProductDetails = () => {
 
   const { id } = useParams();
   const BASE_URL = "https://comfora-site-backend.onrender.com";
+  const navigate = useNavigate();
 
+  const handleBuyNow = (product) => {
+    const productData = {
+      ...product,
+      selectedColor: selectedColor || null,
+      selectedSize: selectedSize || null,
+      image: product.images?.[0], // Or however you're storing images
+      quantity: 1,
+    };
+  
+    localStorage.setItem("buyNowProduct", JSON.stringify(productData));
+    navigate("/checkout");
+  };
+  
   useEffect(() => {
     let session = localStorage.getItem("sessionId");
     if (!session) {
@@ -185,7 +199,10 @@ const ProductDetails = () => {
             >
               Add to Cart
             </button>
-            <button className="bg-black hover:bg-gray-800 text-white text-base px-[98px] py-3 rounded-full w-full sm:w-auto">
+            <button
+              className="bg-black hover:bg-gray-800 text-white text-base px-[98px] py-3 rounded-full w-full sm:w-auto"
+              onClick={() => handleBuyNow(product)}
+            >
               Buy it now
             </button>
             {showAddToCartModal && (

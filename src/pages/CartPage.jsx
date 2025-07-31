@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faTruck } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function CartPage() {
   const [cartItems, setCartItems] = useState([]);
@@ -12,7 +12,9 @@ export default function CartPage() {
   const sessionId = localStorage.getItem("sessionId");
 
 
-  
+// inside your component
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchCart = async () => {
       if (!sessionId) return;
@@ -245,12 +247,16 @@ export default function CartPage() {
             ></textarea>
 
             <div className="flex justify-center items-center">
-              <button className="bg-black hover:bg-gray-600 text-white font-semibold py-4 px-9 rounded-full flex items-center justify-center">
-                <Link to="/checkout">
-                <FontAwesomeIcon icon={faLock} className="mr-2" />
-                Checkout
-                </Link>
-              </button>
+            <button
+              onClick={() => {
+                localStorage.removeItem("buyNowProduct"); 
+                navigate("/checkout"); 
+              }}
+              className="bg-black hover:bg-gray-600 text-white font-semibold py-4 px-9 rounded-full flex items-center justify-center"
+            >
+              <FontAwesomeIcon icon={faLock} className="mr-2" />
+              Checkout
+            </button>
             </div>
           </div>
         </div>
