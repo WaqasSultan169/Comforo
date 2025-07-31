@@ -9,7 +9,7 @@ const ProductDetails = () => {
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(product?.quantity || 1);
   const [allProducts, setAllProducts] = useState([]);
   const [showAddToCartModal, setShowAddToCartModal] = useState(false);
 
@@ -22,8 +22,8 @@ const ProductDetails = () => {
       ...product,
       selectedColor: selectedColor || null,
       selectedSize: selectedSize || null,
-      image: product.images?.[0], // Or however you're storing images
-      quantity: 1,
+      image: product.images?.[0], 
+      quantity: setQuantity
     };
   
     localStorage.setItem("buyNowProduct", JSON.stringify(productData));
@@ -178,18 +178,21 @@ const ProductDetails = () => {
             <div className="flex items-center border border-gray-300 rounded-full overflow-hidden">
               <button
                 className="px-3 py-1 text-lg"
-                onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
               >
                 −
               </button>
-              <span className="px-4 py-1">{quantity}</span>
+
+              <span className="px-4">{quantity}</span>
+
               <button
                 className="px-3 py-1 text-lg"
-                onClick={() => setQuantity(quantity + 1)}
+                onClick={() => setQuantity((prev) => prev + 1)}
               >
                 +
               </button>
             </div>
+
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 mt-6">

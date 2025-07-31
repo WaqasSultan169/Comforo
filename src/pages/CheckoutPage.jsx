@@ -16,6 +16,7 @@ export default function CheckoutPage() {
   const [shippingPrice, setShippingPrice] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [isBuyNow, setIsBuyNow] = useState(false);
+  const [quantities, setQuantities] = useState([]);
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
@@ -33,6 +34,8 @@ export default function CheckoutPage() {
   const sessionId = localStorage.getItem("sessionId");
 
   const routerLocation = useLocation();
+
+
 
   const handleSubmit = async () => {
     try {
@@ -104,39 +107,45 @@ export default function CheckoutPage() {
 
 
   useEffect(() => {
-    const buyNowItem = JSON.parse(localStorage.getItem("buyNowProduct"));
+    const rawBuyNowData = localStorage.getItem("buyNowProduct");
   
-    async function setupCart() {
-      if (buyNowItem) {
-        setIsBuyNow(true);
-        setCartData([buyNowItem]);
-        setSubtotal(buyNowItem.price);
-        setShippingPrice(buyNowItem.shippingPrice || 0);
-      } else {
-        setIsBuyNow(false);
+    if (rawBuyNowData) {
+      const buyNowItem = JSON.parse(rawBuyNowData);
+      const quantity = buyNowItem.quantity || 1;
+  
+      setIsBuyNow(true);
+      setCartData([buyNowItem]);
+      setQuantities([quantity]);
+  
+      const itemSubtotal = buyNowItem.price * quantity;
+      setSubtotal(itemSubtotal);
+      setShippingPrice(buyNowItem.shippingPrice || 0);
+    } else {
+      setIsBuyNow(false);
+  
+      async function fetchCartData() {
         try {
           const response = await fetch(`${BASE_URL}/api/cart/${sessionId}`);
           const data = await response.json();
           const cartItems = data?.items || [];
   
           setCartData(cartItems);
+          setQuantities(cartItems.map(item => item.quantity || 1));
   
-          const total = cartItems.reduce(
-            (acc, item) => acc + item.price * item.quantity,
-            0
-          );
-  
+          const total = cartItems.reduce((acc, item) => acc + item.price * (item.quantity || 1), 0);
           const shipping = cartItems.length > 0 ? cartItems[0].shippingPrice || 0 : 0;
+  
           setSubtotal(total);
           setShippingPrice(shipping);
         } catch (err) {
-          console.error('Failed to fetch cart data:', err);
+          console.error("Failed to fetch cart data:", err);
         }
       }
-    }
   
-    setupCart();
+      fetchCartData();
+    }
   }, [sessionId]);
+  
   
 
   const paymentOptions = [
@@ -431,7 +440,7 @@ export default function CheckoutPage() {
                   </div>
                 </div>
                 <div className="text-sm font-medium text-gray-800 whitespace-nowrap">
-                  Rs {item.price.toLocaleString()}
+                Rs {(item.price * quantities[idx]).toLocaleString()}
                 </div>
               </div>
             ))}
