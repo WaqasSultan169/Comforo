@@ -27,7 +27,7 @@ const Home = () => {
       <FeaturedCollection3 />
       <AboutUsBanner />
       <MediaGridSection />
-      <BrasSection />
+      {/* <BrasSection /> */}
       <PressCarousel />
       <BraPantySection />
       <FaqSection />

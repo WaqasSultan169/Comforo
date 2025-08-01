@@ -5,6 +5,7 @@ import ProductCard from "../../components/ProductCard";
 import CollectionFilters from "../../components/CollectionFilters"; 
 import LogoList from "../../components/LogoList"; 
 import PageTransition from "../../components/PageTransition";
+import brapanties from "../../assets/images/CategoryBanners/braspantyset.JPG"
 
 const BrasPanties = () => {
   const { category } = useParams(); 
@@ -47,7 +48,7 @@ const BrasPanties = () => {
       <div className="pt-28 w-full">
         <CollectionBanner
           title="Bras & Panties Set"
-          imageUrl="https://comfora.pk/cdn/shop/collections/a5fb9a13-832b-43f5-81d9-e54be678a496.png?v=1738766791&width=800"
+          image={brapanties}
         />
 
         <div className="mt-6">

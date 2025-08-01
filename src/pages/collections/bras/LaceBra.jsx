@@ -4,9 +4,8 @@ import CollectionBanner from "../../../components/CollectionBanner";
 import ProductCard from "../../../components/ProductCard";
 import CollectionFilters from "../../../components/CollectionFilters"; 
 import LogoList from "../../../components/LogoList"; 
-import img1 from "../../../assets/images/products/bras.webp";
-import img2 from "../../../assets/images/products/camisole.webp";
 import PageTransition from "../../../components/PageTransition";
+import lacebra from "../../../assets/images/CategoryBanners/lace.webp";
 import axios from "axios";
 
 const LaceBra = () => {
@@ -45,7 +44,7 @@ const LaceBra = () => {
           <div className="pt-28 w-full">
       <CollectionBanner
         title="Lace Bra"
-        imageUrl="https://comfora.pk/cdn/shop/collections/all-over-sheer-lace-bra-and-panty-set-10.jpg?v=1736942307&width=600"
+        image={lacebra}
       />
 
       <div className="mt-6">

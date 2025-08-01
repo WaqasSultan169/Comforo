@@ -5,6 +5,7 @@ import ProductCard from "../../../components/ProductCard";
 import CollectionFilters from "../../../components/CollectionFilters"; 
 import LogoList from "../../../components/LogoList"; 
 import PageTransition from "../../../components/PageTransition";
+import doublepaddedbra from "../../../assets/images/CategoryBanners/doublepaddedbra.jpeg"
 import axios from "axios";
 
 const DoublePaddedBra = () => {
@@ -40,7 +41,7 @@ const DoublePaddedBra = () => {
           <div className="pt-28 w-full">
       <CollectionBanner
         title="Double Padded Bra"
-        imageUrl="https://comfora.pk/cdn/shop/collections/f5d9932808f85fe2046d96f6cf781f00.jpg_720x720q80.jpg?v=1737019152&width=1400"
+        image={doublepaddedbra}
       />
 
       <div className="mt-6">

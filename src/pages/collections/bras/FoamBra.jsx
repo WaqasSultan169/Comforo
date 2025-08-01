@@ -4,9 +4,8 @@ import CollectionBanner from "../../../components/CollectionBanner";
 import ProductCard from "../../../components/ProductCard";
 import CollectionFilters from "../../../components/CollectionFilters"; 
 import LogoList from "../../../components/LogoList"; 
-import img1 from "../../../assets/images/products/bras.webp";
-import img2 from "../../../assets/images/products/camisole.webp";
 import PageTransition from "../../../components/PageTransition";
+import foambra from "../../../assets/images/CategoryBanners/foambra.webp"
 import axios from "axios";
 const FoamBra = () => {
   const { category } = useParams();
@@ -42,7 +41,7 @@ const FoamBra = () => {
           <div className="pt-28 w-full">
       <CollectionBanner
         title="Foam Bra"
-        imageUrl="https://comfora.pk/cdn/shop/collections/779a584d8c1fe16a058f00b126081970.jpg?v=1736937280&width=1200"
+        image={foambra}
       />
 
       <div className="mt-6">

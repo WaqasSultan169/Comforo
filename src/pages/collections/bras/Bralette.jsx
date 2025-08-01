@@ -5,6 +5,7 @@ import ProductCard from "../../../components/ProductCard";
 import CollectionFilters from "../../../components/CollectionFilters"; 
 import LogoList from "../../../components/LogoList"; 
 import PageTransition from "../../../components/PageTransition";
+import bralettebra from "../../../assets/images/CategoryBanners/bralette.webp";
 import axios from "axios";
 
 
@@ -42,7 +43,7 @@ const Bralette = () => {
           <div className="pt-28 w-full">
       <CollectionBanner
         title="Bralette"
-        imageUrl="https://comfora.pk/cdn/shop/collections/b190479f-eac0-48df-be36-a7ea01022442.922de65ae425fdd435baf6c84c03ddf2.webp?v=1738767056&width=700"
+        image={bralettebra}
       />
 
       <div className="mt-6">

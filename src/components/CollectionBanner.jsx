@@ -1,11 +1,11 @@
 import React from "react";
 
-const CollectionBanner = ({ title, imageUrl }) => {
+const CollectionBanner = ({ title, image }) => {
   return (
     <section className="w-full relative overflow-hidden mt-[80px]">
       <div className="relative w-full h-[60vh] sm:h-[70vh] flex items-center justify-center text-white">
         <img
-          src={imageUrl}
+          src={image}
           alt={title}
           className="absolute inset-0 w-full h-full object-cover object-center opacity-90"
         />

@@ -5,6 +5,7 @@ import ProductCard from "../../../components/ProductCard";
 import CollectionFilters from "../../../components/CollectionFilters"; 
 import LogoList from "../../../components/LogoList"; 
 import PageTransition from "../../../components/PageTransition";
+import periodpanties from "../../../assets/images/CategoryBanners/periodpanties.webp";
 import axios from "axios";
 
 const PeriodPanties = () => {
@@ -43,7 +44,7 @@ const PeriodPanties = () => {
             <div className="pt-28 w-full">
       <CollectionBanner
         title="Period Panties"
-        imageUrl="https://comfora.pk/cdn/shop/collections/Nav__Desktop_Period_876x420px_3902451f-9176-47df-b445-3d53788bd903.webp?v=1736955180&width=800"
+        image={periodpanties}
       />
 
       <div className="mt-6">

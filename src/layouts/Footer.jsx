@@ -75,7 +75,7 @@ export default function Footer() {
         <div className="mt-16 flex flex-col md:flex-row items-start md:items-center justify-between">
           <div className="flex items-center space-x-6 text-black">
             <a
-              href="https://www.facebook.com/profile.php?id=61570922022531"
+              href="https://www.facebook.com/share/1CD69rtUcA/?mibextid=wwXIfr"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
@@ -83,7 +83,7 @@ export default function Footer() {
               <FaFacebookF size={22} />
             </a>
             <a
-              href="https://www.instagram.com/comfora_pk?igsh=MWQzaG9hOWp6d2hnaw%3D%3D&utm_source=qr"
+              href="https://www.instagram.com/comfora.pk?igsh=MTJmY21zdHprdWY4Yg=="
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"

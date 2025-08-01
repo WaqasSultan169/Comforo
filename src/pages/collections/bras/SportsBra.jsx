@@ -4,9 +4,8 @@ import CollectionBanner from "../../../components/CollectionBanner";
 import ProductCard from "../../../components/ProductCard";
 import CollectionFilters from "../../../components/CollectionFilters"; 
 import LogoList from "../../../components/LogoList"; 
-import img1 from "../../../assets/images/products/bras.webp";
-import img2 from "../../../assets/images/products/camisole.webp";
 import PageTransition from "../../../components/PageTransition";
+import sportsbra from "../../../assets/images/CategoryBanners/sports.jpeg";
 import axios from "axios";
 const SportsBra = () => {
   const { category } = useParams();
@@ -43,8 +42,8 @@ const SportsBra = () => {
     <PageTransition>
           <div className="pt-28 w-full">
       <CollectionBanner
-        title="Single Padded Bra"
-        imageUrl="https://comfora.pk/cdn/shop/collections/IMG-20241230-WA0014_445b5a2a-d343-463e-8d4b-95bdd005ed4b.jpg?v=1737364404&width=400"
+        title="Sports Bra"
+        image={sportsbra}
       />
 
       <div className="mt-6">

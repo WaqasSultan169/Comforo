@@ -11,8 +11,6 @@ const AddToCartModal = ({ product, selectedColor, selectedSize, onClose }) => {
     return () => clearTimeout(timer);
   }, []);
 
-  const BASE_IMAGE_URL = "https://comfora-site-backend.onrender.com/uploads/";
-
   return (
     <div className="fixed bottom-5 right-5 z-50 w-[400px] bg-white rounded-lg shadow-2xl p-7 animate-slide-up">
         {isLoading ? (

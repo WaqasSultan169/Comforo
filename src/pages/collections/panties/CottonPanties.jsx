@@ -4,9 +4,8 @@ import CollectionBanner from "../../../components/CollectionBanner";
 import ProductCard from "../../../components/ProductCard";
 import CollectionFilters from "../../../components/CollectionFilters"; 
 import LogoList from "../../../components/LogoList"; 
-import img1 from "../../../assets/images/products/bras.webp";
-import img2 from "../../../assets/images/products/camisole.webp";
 import PageTransition from "../../../components/PageTransition";
+import cottonpanties from "../../../assets/images/CategoryBanners/cottonPanties.webp"
 import axios from "axios";
 
 const CottonPanties = () => {
@@ -45,7 +44,7 @@ const CottonPanties = () => {
           <div className="pt-28 w-full">
       <CollectionBanner
         title="Cotton Panties"
-        imageUrl="https://comfora.pk/cdn/shop/collections/SID65A9968-FI.jpg?v=1737021803&width=1000"
+        image={cottonpanties}
       />
 
       <div className="mt-6">

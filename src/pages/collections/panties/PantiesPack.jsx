@@ -4,9 +4,8 @@ import CollectionBanner from "../../../components/CollectionBanner";
 import ProductCard from "../../../components/ProductCard";
 import CollectionFilters from "../../../components/CollectionFilters"; 
 import LogoList from "../../../components/LogoList"; 
-import img1 from "../../../assets/images/products/bras.webp";
-import img2 from "../../../assets/images/products/camisole.webp";
 import PageTransition from "../../../components/PageTransition";
+import pantiesPack from "../../../assets/images/CategoryBanners/pantiesPack.jpg"
 import axios from "axios";
 
 const PantiesPack = () => {
@@ -45,7 +44,7 @@ const PantiesPack = () => {
           <div className="pt-28 w-full">
       <CollectionBanner
         title="Period Panties"
-        imageUrl="https://comfora.pk/cdn/shop/collections/Nav__Desktop_Period_876x420px_3902451f-9176-47df-b445-3d53788bd903.webp?v=1736955180&width=800"
+        image={pantiesPack}
       />
 
       <div className="mt-6">

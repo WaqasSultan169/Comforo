@@ -4,8 +4,7 @@ import CollectionBanner from "../../../components/CollectionBanner";
 import ProductCard from "../../../components/ProductCard";
 import CollectionFilters from "../../../components/CollectionFilters"; 
 import LogoList from "../../../components/LogoList"; 
-import img1 from "../../../assets/images/products/bras.webp";
-import img2 from "../../../assets/images/products/camisole.webp";
+import cottonbra from "../../../assets/images/CategoryBanners/cottonbra.webp"
 import PageTransition from "../../../components/PageTransition";
 import axios from "axios";
 
@@ -44,7 +43,7 @@ const CottonBra = () => {
           <div className="pt-28 w-full">
       <CollectionBanner
         title="Cotton Bra"
-        imageUrl="https://comfora.pk/cdn/shop/collections/473Wx593H-700440646-white-MODEL_73f79a4a-16b5-4361-8715-8d67b1effe4a.webp?v=1737008658&width=1000"
+        image={cottonbra}
       />
 
       <div className="mt-6">

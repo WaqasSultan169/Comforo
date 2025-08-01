@@ -4,9 +4,8 @@ import CollectionBanner from "../../../components/CollectionBanner";
 import ProductCard from "../../../components/ProductCard";
 import CollectionFilters from "../../../components/CollectionFilters"; 
 import LogoList from "../../../components/LogoList"; 
-import img1 from "../../../assets/images/products/bras.webp";
-import img2 from "../../../assets/images/products/camisole.webp";
 import PageTransition from "../../../components/PageTransition";
+import netbra from "../../../assets/images/CategoryBanners/netbra.jpg"
 import axios from "axios";
 
 const NetBra = () => {
@@ -45,7 +44,7 @@ const NetBra = () => {
           <div className="pt-28 w-full">
       <CollectionBanner
         title="Net Bra"
-        imageUrl="https://comfora.pk/cdn/shop/collections/Pleasure_Bra_-_Flourish_-_Maroon_1800x1800_d8669ccf-0ccf-4a17-8c84-6edd7299a332.webp?v=1736942867&width=800"
+        image={netbra}
       />
 
       <div className="mt-6">

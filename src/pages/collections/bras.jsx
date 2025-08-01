@@ -5,6 +5,7 @@ import ProductCard from "../../components/ProductCard";
 import CollectionFilters from "../../components/CollectionFilters"; 
 import LogoList from "../../components/LogoList"; 
 import PageTransition from "../../components/PageTransition";
+import bras from "../../assets/images/CategoryBanners/bras.jpg"
 
 const Bras = () => {
   const { category } = useParams(); 
@@ -47,7 +48,7 @@ const Bras = () => {
       <div className="pt-28 w-full">
         <CollectionBanner
           title="Bras"
-          imageUrl="https://comfora.pk/cdn/shop/collections/IMG_3314.jpg?v=1738839278&width=1800"
+          image={bras}
         />
 
         <div className="mt-6">

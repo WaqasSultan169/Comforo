@@ -5,6 +5,7 @@ import ProductCard from "../../components/ProductCard";
 import CollectionFilters from "../../components/CollectionFilters"; 
 import LogoList from "../../components/LogoList"; 
 import PageTransition from "../../components/PageTransition";
+import nightwear from "../../assets/images/CategoryBanners/nightwear.webp"
 
 const NightWear = () => {
   const { category } = useParams();
@@ -49,7 +50,7 @@ const NightWear = () => {
           <div className="pt-28 w-full">
       <CollectionBanner
         title="Night wear"
-        imageUrl="https://comfora.pk/cdn/shop/collections/Sexy-Women-Lingerie-Night-Dress-Sleepwear-Nightgown-V-Neck-Push-Up-Lace-Dress-Erotic-Ladies-Floral-Lingerie-See-Through-Sleep-Dress_c38513cc-85e0-45e9-8912-5010d0d04f3b.4ee7a7171dab21.webp?v=1736955248"
+        image={nightwear}
       />
 
       <div className="mt-6">

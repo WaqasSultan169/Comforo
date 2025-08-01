@@ -4,9 +4,8 @@ import CollectionBanner from "../../../components/CollectionBanner";
 import ProductCard from "../../../components/ProductCard";
 import CollectionFilters from "../../../components/CollectionFilters"; 
 import LogoList from "../../../components/LogoList"; 
-import img1 from "../../../assets/images/products/bras.webp";
-import img2 from "../../../assets/images/products/camisole.webp";
 import PageTransition from "../../../components/PageTransition";
+import nursingbra from "../../../assets/images/CategoryBanners/nursing.jpeg";
 import axios from "axios";
 
 const NursingBra = () => {
@@ -45,7 +44,7 @@ const NursingBra = () => {
           <div className="pt-28 w-full">
       <CollectionBanner
         title="Nursing Bra"
-        imageUrl="https://comfora.pk/cdn/shop/collections/IMG_5676.jpg?v=1738738414&width=300"
+        image={nursingbra}
       />
 
       <div className="mt-6">

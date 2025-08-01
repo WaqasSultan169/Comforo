@@ -420,14 +420,16 @@ function Header() {
                 setShowCartDropdown((prev) => !prev);
                 setOpenDropdown(null);
               }}
-              className="relative"
+              className="relative flex items-center justify-center"
             >
+              <div className="relative flex items-center justify-center">
               <FiShoppingCart className="cursor-pointer hover:text-gray-500" />
               {cartItems.length > 0 && (
                 <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
                   {cartItems.length}
                 </span>
               )}
+              </div>
             </button>
 
             {showCartDropdown && (

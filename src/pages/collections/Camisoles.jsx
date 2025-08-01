@@ -5,6 +5,7 @@ import ProductCard from "../../components/ProductCard";
 import CollectionFilters from "../../components/CollectionFilters"; 
 import LogoList from "../../components/LogoList"; 
 import PageTransition from "../../components/PageTransition";
+import camisole from "../../assets/images/CategoryBanners/camisoles.webp"
 
 const Camisoles = () => {
   const { category } = useParams();
@@ -50,7 +51,7 @@ const Camisoles = () => {
           <div className="pt-28 w-full">
       <CollectionBanner
         title="Camisoles"
-        imageUrl="https://comfora.pk/cdn/shop/collections/sZHTtlV9t0_2048x_de382148-6dea-4e2e-bfa4-4e1ab171b24e.webp?v=1737021966&width=700"
+        image={camisole}
       />
 
       <div className="mt-6">

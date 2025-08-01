@@ -5,6 +5,7 @@ import ProductCard from "../../components/ProductCard";
 import CollectionFilters from "../../components/CollectionFilters"; 
 import LogoList from "../../components/LogoList"; 
 import PageTransition from "../../components/PageTransition";
+import lingerie from "../../assets/images/CategoryBanners/lingerie.webp"
 
 const Lingerie = () => {
   const { category } = useParams(); 
@@ -47,7 +48,7 @@ const Lingerie = () => {
       <div className="pt-28 w-full">
         <CollectionBanner
           title="LINGERIE"
-          imageUrl="https://comfora.pk/cdn/shop/collections/6e575146-e79e-420a-973f-c546f3cb385d.png?v=1738775128&width=800"
+          image={lingerie}
         />
 
         <div className="mt-6">

@@ -5,6 +5,7 @@ import ProductCard from "../../components/ProductCard";
 import CollectionFilters from "../../components/CollectionFilters"; 
 import LogoList from "../../components/LogoList"; 
 import PageTransition from "../../components/PageTransition";
+import assecories from "../../assets/images/CategoryBanners/accessories.jpg";
 
 const Accessories = () => {
   const { category } = useParams(); 
@@ -47,7 +48,7 @@ const Accessories = () => {
       <div className="pt-28 w-full">
         <CollectionBanner
           title="ACCESSORIES"
-          imageUrl="https://comfora.pk/cdn/shop/collections/Accessories_b196aa25-f3bd-4c3e-9ba3-e128dbecd483.jpg?v=1739534211&width=1000"
+          image={assecories}
         />
 
         <div className="mt-6">

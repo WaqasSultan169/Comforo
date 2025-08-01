@@ -1,11 +1,16 @@
 import React from "react";
+import nightiesImg from '../assets/images/products/nighties.avif';
+import pantiesImg from '../assets/images/products/panties.avif';
+import brasImg from '../assets/images/products/brasImg.avif';
+import lingerieImg from '../assets/images/products/lingerieImg.jpg';
+import shapewearImg from '../assets/images/products/shapewearImg.avif';
 
 const logos = [
-  { id: 1, image: "https://comfora.pk/cdn/shop/files/download.jpg?v=1738749433&width=225" },
-  { id: 2, image: "https://comfora.pk/cdn/shop/files/images_19.jpg?v=1738675355&width=225" },
-  { id: 3, image: "https://comfora.pk/cdn/shop/files/s-l1200_9249fe58-de37-4c72-89ee-99fb9e8c1b80.png?v=1738675018&width=1000" },
-  { id: 4, image: "https://comfora.pk/cdn/shop/files/44449d6439994ce662b449218af1ee27.jpg_720x720q80.jpg?v=1736929833&width=720" },
-  { id: 5, image: "https://comfora.pk/cdn/shop/files/71HzVYxUKSL._AC_UY1000.jpg?v=1736929757&width=1000" },
+  { id: 1, image: nightiesImg },
+  { id: 2, image: pantiesImg },
+  { id: 3, image: brasImg },
+  { id: 4, image: lingerieImg },
+  { id: 5, image: shapewearImg },
 ];
 
 export default function LogoList() {

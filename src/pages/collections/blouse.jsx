@@ -5,6 +5,7 @@ import ProductCard from "../../components/ProductCard";
 import CollectionFilters from "../../components/CollectionFilters"; 
 import LogoList from "../../components/LogoList"; 
 import PageTransition from "../../components/PageTransition";
+import blouse from "../../assets/images/CategoryBanners/blouse.jpg"
 
 const Blouse = () => {
   const { category } = useParams(); 
@@ -47,7 +48,7 @@ const Blouse = () => {
       <div className="pt-28 w-full">
         <CollectionBanner
           title="BLOUSE"
-          imageUrl="https://comfora.pk/cdn/shop/collections/IMG_5648.jpg?v=1737363120&width=500"
+          image={blouse}
         />
 
         <div className="mt-6">

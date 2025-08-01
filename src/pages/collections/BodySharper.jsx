@@ -5,6 +5,7 @@ import ProductCard from "../../components/ProductCard";
 import CollectionFilters from "../../components/CollectionFilters"; 
 import LogoList from "../../components/LogoList"; 
 import PageTransition from "../../components/PageTransition";
+import bodysharper from "../../assets/images/CategoryBanners/bodysharper.jpg"
 
 const BodySharper = () => {
   const { category } = useParams();
@@ -48,7 +49,7 @@ const BodySharper = () => {
           <div className="pt-28 w-full">
       <CollectionBanner
         title="Body Sharper"
-        imageUrl="https://comfora.pk/cdn/shop/collections/81pVzXviKRL._UL500_294dcced-26f4-44d0-b978-9612dcbdfb27.jpg?v=1736955406&width=1600"
+        image={bodysharper}
       />
 
       <div className="mt-6">
