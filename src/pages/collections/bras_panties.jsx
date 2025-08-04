@@ -5,7 +5,7 @@ import ProductCard from "../../components/ProductCard";
 import CollectionFilters from "../../components/CollectionFilters"; 
 import LogoList from "../../components/LogoList"; 
 import PageTransition from "../../components/PageTransition";
-import brapanties from "../../assets/images/CategoryBanners/braspantyset.JPG"
+import brapanties from "../../assets/images/CategoryBanners/braspantyset.jpg"
 
 const BrasPanties = () => {
   const { category } = useParams(); 
