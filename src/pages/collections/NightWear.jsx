@@ -5,7 +5,7 @@ import ProductCard from "../../components/ProductCard";
 import CollectionFilters from "../../components/CollectionFilters"; 
 import LogoList from "../../components/LogoList"; 
 import PageTransition from "../../components/PageTransition";
-import nightwear from "../../assets/images/CategoryBanners/nightwear.webp"
+import nightwear from "../../assets/images/CategoryBanners/nightwear.jpg"
 
 const NightWear = () => {
   const { category } = useParams();

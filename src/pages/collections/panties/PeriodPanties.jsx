@@ -5,7 +5,7 @@ import ProductCard from "../../../components/ProductCard";
 import CollectionFilters from "../../../components/CollectionFilters"; 
 import LogoList from "../../../components/LogoList"; 
 import PageTransition from "../../../components/PageTransition";
-import periodpanties from "../../../assets/images/CategoryBanners/periodpanties.webp";
+import periodpanties from "../../../assets/images/CategoryBanners/period_panties.jpg";
 import axios from "axios";
 
 const PeriodPanties = () => {

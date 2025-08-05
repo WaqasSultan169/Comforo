@@ -5,7 +5,7 @@ import ProductCard from "../../../components/ProductCard";
 import CollectionFilters from "../../../components/CollectionFilters"; 
 import LogoList from "../../../components/LogoList"; 
 import PageTransition from "../../../components/PageTransition";
-import lacebra from "../../../assets/images/CategoryBanners/lace.webp";
+import lacebra from "../../../assets/images/CategoryBanners/lace.jpg";
 import axios from "axios";
 
 const LaceBra = () => {

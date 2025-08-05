@@ -5,7 +5,7 @@ import ProductCard from "../../components/ProductCard";
 import CollectionFilters from "../../components/CollectionFilters"; 
 import LogoList from "../../components/LogoList"; 
 import PageTransition from "../../components/PageTransition";
-import camisole from "../../assets/images/CategoryBanners/camisoles.webp"
+import camisole from "../../assets/images/CategoryBanners/camisoles.jpg"
 
 const Camisoles = () => {
   const { category } = useParams();

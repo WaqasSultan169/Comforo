@@ -5,7 +5,7 @@ import ProductCard from "../../../components/ProductCard";
 import CollectionFilters from "../../../components/CollectionFilters"; 
 import LogoList from "../../../components/LogoList"; 
 import PageTransition from "../../../components/PageTransition";
-import foambra from "../../../assets/images/CategoryBanners/foambra.webp"
+import foambra from "../../../assets/images/CategoryBanners/foam_bra.jpg"
 import axios from "axios";
 const FoamBra = () => {
   const { category } = useParams();

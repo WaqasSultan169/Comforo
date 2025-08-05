@@ -5,7 +5,7 @@ import ProductCard from "../../../components/ProductCard";
 import CollectionFilters from "../../../components/CollectionFilters"; 
 import LogoList from "../../../components/LogoList"; 
 import PageTransition from "../../../components/PageTransition";
-import bralettebra from "../../../assets/images/CategoryBanners/bralette.webp";
+import bralettebra from "../../../assets/images/CategoryBanners/bralette.jpg";
 import axios from "axios";
 
 

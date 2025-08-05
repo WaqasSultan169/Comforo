@@ -5,7 +5,7 @@ import ProductCard from "../../components/ProductCard";
 import CollectionFilters from "../../components/CollectionFilters"; 
 import LogoList from "../../components/LogoList"; 
 import PageTransition from "../../components/PageTransition";
-import lingerie from "../../assets/images/CategoryBanners/lingerie.webp"
+import lingerie from "../../assets/images/CategoryBanners/lingeries.jpg"
 
 const Lingerie = () => {
   const { category } = useParams(); 

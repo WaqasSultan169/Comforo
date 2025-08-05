@@ -5,7 +5,7 @@ import ProductCard from "../../../components/ProductCard";
 import CollectionFilters from "../../../components/CollectionFilters"; 
 import LogoList from "../../../components/LogoList"; 
 import PageTransition from "../../../components/PageTransition";
-import cottonpanties from "../../../assets/images/CategoryBanners/cottonPanties.webp"
+import cottonpanties from "../../../assets/images/CategoryBanners/panties.jpg"
 import axios from "axios";
 
 const CottonPanties = () => {

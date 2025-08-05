@@ -4,7 +4,7 @@ import CollectionBanner from "../../../components/CollectionBanner";
 import ProductCard from "../../../components/ProductCard";
 import CollectionFilters from "../../../components/CollectionFilters"; 
 import LogoList from "../../../components/LogoList"; 
-import cottonbra from "../../../assets/images/CategoryBanners/cottonbra.webp"
+import cottonbra from "../../../assets/images/CategoryBanners/cotton_bra.jpg"
 import PageTransition from "../../../components/PageTransition";
 import axios from "axios";
 
